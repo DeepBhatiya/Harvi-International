@@ -11352,7 +11352,8 @@ footer .social-icon-circle a:hover {
         outline: none;
     }
     .navbar.blur {
-        background: rgba(255, 255, 255, 0.8);
+        /* background: rgba(255, 255, 255, 0.8); */
+        background: transparent;
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -12143,6 +12144,7 @@ footer .social-icon-circle a:hover {
 /* Catalogue Image Styles */
 .catalogue-img {
     object-fit: cover;
+    border: 1px solid #f68b23;
 }
 
 /* Catalogue Item Styles */
