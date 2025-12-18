@@ -24,11 +24,12 @@
                                                 <p class=""><a href="contact-us.html" class="fs-14">Contact Us</a></p>
                                             </div>
                                             <div class="col-6">
-                                                <h6 class="fs-18 mb-30px text-uppercase">Utility Pages</h6>
-                                                <p class="mb-10px"><a href="packing-details.html" class="fs-14">Packing Details</a></p>
-                                                <p class="mb-10px"><a href="technical-specifications.html" class="fs-14">Technical Specifications</a></p>
-                                                <p class="mb-10px"><a href="tiles-calculate.html" class="fs-14">Tiles Calculate</a></p>
-                                                
+                                                <h6 class="fs-18 mb-30px text-uppercase">Products</h6>
+                                                <p class="mb-10px"><a href="60x60.html" class="fs-14">60x60</a></p>
+                                                <p class="mb-10px"><a href="60x120.html" class="fs-14">60x120</a></p>
+                                                <p class="mb-10px"><a href="20x120.html" class="fs-14">20x120</a></p>                                                 
+                                                <p class="mb-10px"><a href="1200x2400.html" class="fs-14">1200x2400</a></p>
+                                                <p class="mb-10px"><a href="1200x2800.html" class="fs-14">1200x2800</a></p>
                                             </div>
                                         </div>
                                     </div>

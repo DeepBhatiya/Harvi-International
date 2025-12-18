@@ -6988,6 +6988,18 @@ strong {
     transition: all .4s;
 }
 
+.butn.butn-dark-main {
+    background: var(--alt-black);
+    color: var(--white);
+    border: 1px solid var(--alt-black);
+}
+
+.butn.butn-dark-main:hover {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--main-background);
+}
+
 .butn.butn-md {
     padding: 15px 35px;
 }
@@ -6998,8 +7010,9 @@ strong {
 
 .butn.butn-full {
     padding: 14px 30px;
-    width: 100%;
+    /* width: 100%; */
     text-align: center;
+    border-radius: 5px;
 }
 
 .butn.bg-light {

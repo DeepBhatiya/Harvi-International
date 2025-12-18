@@ -1,7 +1,7 @@
 // Header Component - Injects navbar into all pages
-(function() {
+(function () {
     'use strict';
-    
+
     // Add CSS for nested dropdown menus
     if (!$('#header-submenu-styles').length) {
         $('head').append(`
@@ -46,9 +46,9 @@
             </style>
         `);
     }
-    
+
     // Wait for DOM to be ready
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Find where to insert the header (before smooth-wrapper or after progress-wrap)
         var headerHTML = `
     <!-- ==================== Start Navbar ==================== -->
@@ -83,13 +83,16 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
                                 <a class="dropdown-item dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Porcelain Tiles</a>
-                                <ul class="dropdown-menu">
+                               <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="60x60.html">60x60</a></li>
                                     <li><a class="dropdown-item" href="60x120.html">60x120</a></li>
+                                    <li><a class="dropdown-item" href="20x120.html">20x120</a></li>
+                                    <li><a class="dropdown-item" href="80x80.html">80x80</a></li>
                                     <li><a class="dropdown-item" href="80x160.html">80x160</a></li>
                                     <li><a class="dropdown-item" href="100x100.html">100x100</a></li>
                                     <li><a class="dropdown-item" href="120x120.html">120x120</a></li>
                                 </ul>
+
                             </li>
                             <li class="dropdown-submenu">
                                 <a class="dropdown-item dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Porcelain Slabs</a>
@@ -106,14 +109,6 @@
                                     <li><a class="dropdown-item" href="20x120.html">20x120</a></li>
                                 </ul>
                             </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="rolling-text">Utilities</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="tiles-calculate.html">Tiles Calculate</a></li>
-                            <li><a class="dropdown-item" href="packing-details.html">Packing Details</a></li>
-                            <li><a class="dropdown-item" href="technical-specifications.html">Technical Specifications</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -138,7 +133,7 @@
 
     <!-- ==================== End Navbar ==================== -->
         `;
-        
+
         // Insert header before smooth-wrapper or after progress-wrap
         var $target = $('.progress-wrap');
         if ($target.length) {
@@ -153,23 +148,23 @@
                 $('body').append(headerHTML);
             }
         }
-        
+
         // Handle nested dropdown menus (submenu support)
-        $('.dropdown-submenu > a').on("click", function(e) {
+        $('.dropdown-submenu > a').on("click", function (e) {
             e.stopPropagation();
             e.preventDefault();
             var submenu = $(this).next('ul');
             var parent = $(this).parent();
-            
+
             // Close other submenus
             $('.dropdown-submenu').not(parent).find('ul').removeClass('show');
-            
+
             // Toggle current submenu
             submenu.toggleClass('show');
         });
-        
+
         // Close submenus when clicking outside
-        $(document).on('click', function(e) {
+        $(document).on('click', function (e) {
             if (!$(e.target).closest('.dropdown-submenu').length) {
                 $('.dropdown-submenu ul').removeClass('show');
             }
