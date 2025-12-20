@@ -9905,7 +9905,8 @@ footer .social-icon-circle a:hover {
     height: 150px;
     line-height: 170px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--main-background);
+    color: #fff;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 50%;
@@ -12547,3 +12548,19 @@ footer .social-icon-circle a:hover {
     }
 }
 /* ====================== [ End Country Slider Styles ] ====================== */
+
+/* ====================== [ Start 80x240 Styles ] ====================== */
+.img-80x240 {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.img-80x240:hover {
+    transform: scale(1.05);
+}
+
+.img-80x240:hover {
+    transform: scale(1.05);
+}
+/* ====================== [ End 80x240 Styles ] ====================== */

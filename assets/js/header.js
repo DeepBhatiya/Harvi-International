@@ -97,18 +97,13 @@
                             <li class="dropdown-submenu">
                                 <a class="dropdown-item dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Porcelain Slabs</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="800x240.html">800x240 – 15mm</a></li>
+                                    <li><a class="dropdown-item" href="80x240.html">80x240 – 15mm</a></li>
                                     <li><a class="dropdown-item" href="80x320.html">80x320 – 15mm</a></li>
                                     <li><a class="dropdown-item" href="1200x2400.html">1200x2400</a></li>
                                     <li><a class="dropdown-item" href="1200x2800.html">1200x2800</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">Wooden</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="20x120.html">20x120</a></li>
-                                </ul>
-                            </li>
+                           
                         </ul>
                     </li>
                     <li class="nav-item">
