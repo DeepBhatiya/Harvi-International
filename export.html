@@ -180,6 +180,8 @@
     </section>
     <!-- ==================== End Section ==================== -->
 
+    
+
     <!-- ==================== Start Country Slider Section ==================== -->
     <section class="py-100px">
         <div class="container">
@@ -190,6 +192,12 @@
                     <p class="opacity-8">We deliver premium ceramic tiles to customers across the globe</p>
                 </div>
             </div>
+            <!-- map -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/worldHigh.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <div id="chartdiv"></div>
             <div class="row">
                 <div class="col-12">
                     <div class="country-slider-wrapper">
@@ -371,7 +379,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="table-responsive">
+                    <div class="table-responsive export-table-wrapper">
                         <table class="table table-bordered table-hover">
                             <thead class="main-background">
                                 <tr>
@@ -471,8 +479,8 @@
             </div>
 
             <div class="row">
-              
-                    <div class="table-responsive">
+                <div class="col-lg-12">
+                    <div class="table-responsive export-table-wrapper">
                         <table class="table table-bordered table-hover">
                             <thead class="main-background">
                                 <tr>
@@ -521,8 +529,7 @@
                         </table>
                         <p class="mt-10px fs-12 opacity-7">*Slip resistance values vary by surface finish (matt, structured, polished) and can be provided per collection on request.</p>
                     </div>
-
-                
+                </div>
             </div>
         </div>
     </section>
@@ -544,7 +551,129 @@
 
 
 
+    <!-- map script -->
+    <script>
+        /**
+ * ---------------------------------------
+ * This demo was created using amCharts 4.
+ * 
+ * For more information visit:
+ * https://www.amcharts.com/
+ * 
+ * Documentation is available at:
+ * https://www.amcharts.com/docs/v4/
+ * ---------------------------------------
+ */
 
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create map instance
+var chart = am4core.create("chartdiv", am4maps.MapChart);
+
+// Set map definition
+chart.geodata = am4geodata_worldHigh;
+
+// Set projection
+chart.projection = new am4maps.projections.Mercator();
+
+// Disable zoom and pan
+chart.seriesContainer.draggable = false;
+chart.seriesContainer.resizable = false;
+chart.maxZoomLevel = 1;
+chart.minZoomLevel = 1;
+chart.zoomEasing = am4core.ease.linear;
+
+// Export menu (optional - can be removed if not needed)
+chart.exporting.menu = new am4core.ExportMenu();
+
+// Export countries from slider - Country codes mapping
+var exportCountries = [
+  { "id": "TW", "title": "Taiwan" },
+  { "id": "GR", "title": "Greece" },
+  { "id": "FR", "title": "France" },
+  { "id": "DE", "title": "Germany" },
+  { "id": "RU", "title": "Russia" },
+  { "id": "KZ", "title": "Kazakhstan" },
+  { "id": "AE", "title": "United Arab Emirates" },
+  { "id": "KW", "title": "Kuwait" },
+  { "id": "SN", "title": "Senegal" },
+  { "id": "NG", "title": "Nigeria" },
+  { "id": "KE", "title": "Kenya" },
+  { "id": "ET", "title": "Ethiopia" },
+  { "id": "SO", "title": "Somalia" },
+  { "id": "IL", "title": "Israel" },
+  { "id": "PS", "title": "Palestine" },
+  { "id": "TR", "title": "Turkey" },
+  { "id": "CY", "title": "Cyprus" },
+  { "id": "EC", "title": "Ecuador" },
+  { "id": "GT", "title": "Guatemala" },
+  { "id": "VE", "title": "Venezuela" },
+  { "id": "BO", "title": "Bolivia" },
+  { "id": "PE", "title": "Peru" },
+  { "id": "GE", "title": "Georgia" },
+  { "id": "AM", "title": "Armenia" },
+  { "id": "IQ", "title": "Iraq" }
+];
+
+// Single color for all export countries
+var exportColor = "#198aea";
+
+// Array to store country IDs to exclude from world series
+var excludedCountries = ["AQ"]; // Exclude Antarctica
+
+// Create series for export countries
+var exportSeries = chart.series.push(new am4maps.MapPolygonSeries());
+exportSeries.name = "Export Countries";
+exportSeries.useGeodata = true;
+
+var includedCountries = [];
+exportCountries.forEach(function(country) {
+  includedCountries.push(country.id);
+  excludedCountries.push(country.id);
+});
+exportSeries.include = includedCountries;
+
+// Set single color for all export countries
+exportSeries.fill = am4core.color(exportColor);
+exportSeries.calculateVisualCenter = true;
+
+// Country shape properties
+var mapPolygonTemplate = exportSeries.mapPolygons.template;
+mapPolygonTemplate.fill = am4core.color(exportColor);
+mapPolygonTemplate.fillOpacity = 0.8;
+mapPolygonTemplate.stroke = am4core.color("#ffffff");
+mapPolygonTemplate.strokeWidth = 1;
+mapPolygonTemplate.nonScalingStroke = true;
+mapPolygonTemplate.tooltipPosition = "fixed";
+
+// Hover state
+var hoverState = mapPolygonTemplate.states.create("hover");
+hoverState.properties.fill = am4core.color("#1569a5");
+hoverState.properties.fillOpacity = 1;
+
+// Tooltip
+mapPolygonTemplate.tooltipText = "{title}";
+
+// Set data
+exportSeries.data = JSON.parse(JSON.stringify(exportCountries));
+
+// The rest of the world - neutral color
+var worldSeries = chart.series.push(new am4maps.MapPolygonSeries());
+worldSeries.name = "world";
+worldSeries.useGeodata = true;
+worldSeries.exclude = excludedCountries;
+worldSeries.fill = am4core.color("#e0e0e0");
+worldSeries.fillOpacity = 0.6;
+worldSeries.hiddenInLegend = true;
+worldSeries.mapPolygons.template.nonScalingStroke = true;
+worldSeries.mapPolygons.template.stroke = am4core.color("#ffffff");
+worldSeries.mapPolygons.template.strokeWidth = 0.5;
+
+// Disable interactions on world series
+worldSeries.mapPolygons.template.interactionsEnabled = false;
+     </script>
 
     <!-- jQuery -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
